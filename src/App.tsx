@@ -3,8 +3,7 @@ import "./App.scss";
 
 const App = () => (
   <div>
-    <div className="rocket">⁌</div>
-    <div className="gun">🔫</div>
+    <div className="rocket">App</div>
   </div>
 );
 
