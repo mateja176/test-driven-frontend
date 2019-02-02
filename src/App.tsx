@@ -1,13 +1,13 @@
-import * as React from "react";
-import * as yup from "yup";
-import "./App.scss";
-import AppStyle from "./AppStyle";
+import * as React from "react"
+import * as yup from "yup"
+import "./App.scss"
+import AppStyle from "./AppStyle"
 
 export interface AppState {
-  email: string;
-  loading: boolean;
-  success: boolean;
-  errors: { message: string }[];
+  email: string
+  loading: boolean
+  success: boolean
+  errors: { message: string }[]
 }
 
 class App extends React.Component<{}, AppState> {
@@ -15,23 +15,23 @@ class App extends React.Component<{}, AppState> {
     email: "",
     loading: false,
     success: false,
-    errors: []
-  };
+    errors: [],
+  }
 
   removeError = (messageToRemoveBy: string) =>
     this.setState(({ errors }) => ({
-      errors: errors.filter(({ message }) => message !== messageToRemoveBy)
-    }));
+      errors: errors.filter(({ message }) => message !== messageToRemoveBy),
+    }))
 
   render = () => {
     const {
-      state: { email, loading, success, errors }
-    } = this;
+      state: { email, loading, success, errors },
+    } = this
 
     const emailValid = yup
       .string()
       .email()
-      .isValidSync(email);
+      .isValidSync(email)
 
     return (
       <div style={AppStyle}>
@@ -39,7 +39,7 @@ class App extends React.Component<{}, AppState> {
           style={{
             visibility: success ? "visible" : "hidden",
             opacity: success ? 1 : 0,
-            transition: "opacity 1s ease-in-out"
+            transition: "all 1s ease-in-out",
           }}
         >
           ✅ Submitted
@@ -49,16 +49,16 @@ class App extends React.Component<{}, AppState> {
         ))}
         <form
           onSubmit={e => {
-            e.preventDefault();
+            e.preventDefault()
 
-            this.setState({ loading: true });
+            this.setState({ loading: true })
 
             setTimeout(
               () => this.setState({ loading: false, success: true, email: "" }),
-              2000
-            );
+              2000,
+            )
 
-            setTimeout(() => this.setState({ success: false }), 5000);
+            setTimeout(() => this.setState({ success: false }), 5000)
           }}
         >
           <input
@@ -75,8 +75,8 @@ class App extends React.Component<{}, AppState> {
           />
         </form>
       </div>
-    );
-  };
+    )
+  }
 }
 
-export default App;
+export default App
